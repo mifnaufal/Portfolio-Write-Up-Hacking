@@ -1,0 +1,6 @@
+flask
+markdown
+pygments
+bcrypt
+gunicorn
+Flask-WTF
