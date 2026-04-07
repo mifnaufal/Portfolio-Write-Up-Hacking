@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}{{ writeup.title }}{% endblock %}
+{% block content %}
+<h1>{{ writeup.title }}</h1>
+<p><small>{{ writeup.created_at }} | {% for c in categories %}{{ c }}{% if not loop.last %}, {% endif %}{% endfor %}</small></p>
+<article>{{ html_content|safe }}</article>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Write-Ups{% endblock %}
+{% block content %}
+<h2>✍️ Write-Up Baru</h2>
+<form method="post">{{ form.hidden_tag() }}
+  <p>{{ form.title.label }} {{ form.title(size=64) }}</p>
+  <p>{{ form.content_md.label }}<br>{{ form.content_md(rows=15, cols=80) }}</p>
+  <p>{{ form.categories.label }}<br>
+    {% for subfield in form.categories %}{{ subfield }} {{ subfield.label.text }}<br>{% endfor %}
+  </p>
+  <p>{{ form.is_published }} {{ form.is_published.label }}</p>
+  <p>{{ form.submit() }}</p>
+</form>
+<hr>
+<h3>Daftar</h3>
+<ul>
+{% for w in writeups %}
+<li><a href="{{ url_for('writeup_detail', slug=w.slug) }}">{{ w.title }}</a> 
+  [{{ '✅' if w.is_published else '⏸️' }}]
+  <a href="{{ url_for('admin_wu_edit', id=w.id) }}">✏️</a>
+  <form method="post" action="{{ url_for('admin_wu_delete', id=w.id) }}" style="display:inline" onsubmit="return confirm('Hapus?')">
+    <button type="submit" style="color:red">🗑️</button>
+  </form>
+</li>
+{% endfor %}
+</ul>
+<a href="{{ url_for('admin_categories') }}">← Kelola Kategori</a> | <a href="{{ url_for('admin_logout') }}">Logout</a>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Kategori{% endblock %}
+{% block content %}
+<h2>📂 Kategori</h2>
+<form method="post">{{ form.hidden_tag() }}
+  {{ form.name(size=32) }} {{ form.submit() }}
+</form>
+<ul>
+{% for c in categories %}
+<li>{{ c.name }} 
+  <form method="post" action="{{ url_for('admin_cat_edit', id=c.id) }}" style="display:inline">
+    <input name="name" value="{{ c.name }}">
+    <button type="submit">✏️</button>
+  </form>
+  <form method="post" action="{{ url_for('admin_cat_delete', id=c.id) }}" style="display:inline" onsubmit="return confirm('Hapus?')">
+    <button type="submit" style="color:red">🗑️</button>
+  </form>
+</li>
+{% endfor %}
+</ul>
+<a href="{{ url_for('admin_writeups') }}">→ Kelola Write-Up</a> | <a href="{{ url_for('admin_logout') }}">Logout</a>
+{% endblock %}

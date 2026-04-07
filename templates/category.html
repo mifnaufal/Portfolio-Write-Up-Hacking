@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Kategori: {{ category.name }}{% endblock %}
+{% block content %}
+<h2>📂 {{ category.name }}</h2>
+<ul>
+{% for w in writeups %}<li><a href="{{ url_for('writeup_detail', slug=w.slug) }}">{{ w.title }}</a></li>
+{% else %}<li>Tidak ada write-up di kategori ini.</li>{% endfor %}
+</ul>
+<a href="{{ url_for('index') }}">← Kembali</a>
+{% endblock %}

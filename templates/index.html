@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<h1>Write-Ups</h1>
+<form action="{{ url_for('search') }}" method="get"><input name="q" placeholder="Cari..."><button>🔍</button></form>
+<ul>
+{% for w in writeups %}
+  <li><a href="{{ url_for('writeup_detail', slug=w.slug) }}">{{ w.title }}</a> 
+  {% if w.cats %}<small>→ {{ w.cats }}</small>{% endif %}</li>
+{% else %}<li>Belum ada write-up.</li>{% endfor %}
+</ul>
+{% endblock %}
