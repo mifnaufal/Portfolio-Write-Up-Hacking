@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Edit Write-Up{% endblock %}
+{% block content %}
+<div class="admin-header">
+  <h2>✏️ Edit Write-Up</h2>
+  <a href="{{ url_for('admin_writeups') }}" class="btn btn-secondary">← Back</a>
+</div>
+
+<div class="card">
+  <form method="post">
+    {{ form.hidden_tag() }}
+    
+    <div class="form-group">
+      <label for="title">Title</label>
+      {{ form.title(id="title") }}
+    </div>
+    
+    <div class="form-group">
+      <label for="content_md">Content (Markdown)</label>
+      {{ form.content_md(id="content_md") }}
+    </div>
+    
+    <div class="form-group">
+      <label>Categories</label>
+      {{ form.categories() }}
+      <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">
+        Separate with commas. New categories will be auto-created.
+      </small>
+      {% if categories %}
+        <div style="margin-top: 0.75rem;">
+          <strong style="color: var(--accent);">Available:</strong>
+          {% for c in categories %}
+            <span class="badge" style="margin: 0.25rem;">{{ c.name }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+    
+    <div class="form-group">
+      <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+        {{ form.is_published() }}
+        <span>{{ form.is_published.label.text }}</span>
+      </label>
+    </div>
+    
+    {{ form.submit(class="btn") }}
+  </form>
+</div>
+{% endblock %}

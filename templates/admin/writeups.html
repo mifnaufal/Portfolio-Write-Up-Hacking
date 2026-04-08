@@ -1,28 +1,92 @@
 {% extends "base.html" %}
-{% block title %}Write-Ups{% endblock %}
+{% block title %}Manage Write-Ups{% endblock %}
 {% block content %}
-<h2>✍️ Write-Up Baru</h2>
-<form method="post">{{ form.hidden_tag() }}
-  <p>{{ form.title.label }} {{ form.title(size=64) }}</p>
-  <p>{{ form.content_md.label }}<br>{{ form.content_md(rows=15, cols=80) }}</p>
-  <p>{{ form.categories.label }}<br>
-    {% for subfield in form.categories %}{{ subfield }} {{ subfield.label.text }}<br>{% endfor %}
-  </p>
-  <p>{{ form.is_published }} {{ form.is_published.label }}</p>
-  <p>{{ form.submit() }}</p>
-</form>
-<hr>
-<h3>Daftar</h3>
-<ul>
-{% for w in writeups %}
-<li><a href="{{ url_for('writeup_detail', slug=w.slug) }}">{{ w.title }}</a> 
-  [{{ '✅' if w.is_published else '⏸️' }}]
-  <a href="{{ url_for('admin_wu_edit', id=w.id) }}">✏️</a>
-  <form method="post" action="{{ url_for('admin_wu_delete', id=w.id) }}" style="display:inline" onsubmit="return confirm('Hapus?')">
-    <button type="submit" style="color:red">🗑️</button>
+<div class="admin-header">
+  <h2>✍️ Manage Write-Ups</h2>
+  <div class="flex gap-2">
+    <a href="{{ url_for('admin_categories') }}" class="btn btn-secondary">Categories</a>
+    <a href="{{ url_for('admin_logout') }}" class="btn btn-danger">Logout</a>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Create New Write-Up</h3>
+  <form method="post" style="margin-top: 1.5rem;">
+    {{ form.hidden_tag() }}
+    
+    <div class="form-group">
+      <label for="title">Title</label>
+      {{ form.title(id="title", placeholder="Write-up title") }}
+    </div>
+    
+    <div class="form-group">
+      <label for="content_md">Content (Markdown)</label>
+      {{ form.content_md(id="content_md", placeholder="# Heading\n\nYour content here...") }}
+    </div>
+    
+    <div class="form-group">
+      <label>Categories</label>
+      {{ form.categories(placeholder="Web Hacking, Buffer Overflow, OSINT") }}
+      <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">
+        Separate with commas. New categories will be auto-created.
+      </small>
+      {% if categories %}
+        <div style="margin-top: 0.75rem;">
+          <strong style="color: var(--accent);">Available:</strong>
+          {% for c in categories %}
+            <span class="badge" style="margin: 0.25rem;">{{ c.name }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+    
+    <div class="form-group">
+      <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+        {{ form.is_published() }}
+        <span>{{ form.is_published.label.text }}</span>
+      </label>
+    </div>
+    
+    {{ form.submit(class="btn") }}
   </form>
-</li>
-{% endfor %}
-</ul>
-<a href="{{ url_for('admin_categories') }}">← Kelola Kategori</a> | <a href="{{ url_for('admin_logout') }}">Logout</a>
+</div>
+
+<div class="card mt-2">
+  <h3>All Write-Ups</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Created</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for w in writeups %}
+        <tr>
+          <td><a href="{{ url_for('writeup_detail', slug=w.slug) }}" target="_blank">{{ w.title }}</a></td>
+          <td>
+            {% if w.is_published %}
+              <span class="badge" style="background: var(--success); color: white;">Published</span>
+            {% else %}
+              <span class="badge" style="background: var(--warning); color: black;">Draft</span>
+            {% endif %}
+          </td>
+          <td>{{ w.created_at[:10] }}</td>
+          <td>
+            <a href="{{ url_for('admin_wu_edit', id=w.id) }}" class="btn btn-sm btn-secondary">✏️ Edit</a>
+            <form method="post" action="{{ url_for('admin_wu_delete', id=w.id) }}" style="display: inline;" onsubmit="return confirm('Delete this write-up?')">
+              <button type="submit" class="btn btn-sm btn-danger">🗑️ Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% else %}
+        <tr>
+          <td colspan="4" class="text-center" style="color: var(--text-secondary);">No write-ups yet</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}

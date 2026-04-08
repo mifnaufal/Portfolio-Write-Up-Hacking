@@ -1,10 +1,26 @@
 {% extends "base.html" %}
-{% block title %}Kategori: {{ category.name }}{% endblock %}
+{% block title %}{{ category.name }}{% endblock %}
 {% block content %}
-<h2>📂 {{ category.name }}</h2>
-<ul>
-{% for w in writeups %}<li><a href="{{ url_for('writeup_detail', slug=w.slug) }}">{{ w.title }}</a></li>
-{% else %}<li>Tidak ada write-up di kategori ini.</li>{% endfor %}
+<h1>📂 {{ category.name }}</h1>
+<p style="color: var(--text-secondary); margin-bottom: 2rem;">Category: <code>{{ category.slug }}</code></p>
+
+<ul class="writeup-list">
+  {% for w in writeups %}
+    <li class="writeup-item">
+      <a href="{{ url_for('writeup_detail', slug=w.slug) }}" class="writeup-title">
+        <span>📄</span>
+        {{ w.title }}
+      </a>
+      <div class="writeup-meta">
+        <span>📅 {{ w.created_at[:10] }}</span>
+      </div>
+    </li>
+  {% else %}
+    <li class="card text-center">
+      <p style="color: var(--text-secondary);">No write-ups in this category yet</p>
+    </li>
+  {% endfor %}
 </ul>
-<a href="{{ url_for('index') }}">← Kembali</a>
+
+<a href="{{ url_for('index') }}" class="btn btn-secondary mt-2">← Back to Home</a>
 {% endblock %}

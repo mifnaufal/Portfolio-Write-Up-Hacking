@@ -1,24 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
+
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>{% block title %}Portfolio{% endblock %}</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='pygments.css') }}">
-  <style>
-    body{font-family:system-ui,sans-serif;margin:2rem;line-height:1.6}
-    nav a{margin-right:1rem;text-decoration:none}
-    code,pre{background:#f4f4f4;padding:2px 6px;border-radius:4px}
-    pre{padding:1rem;overflow:auto}
-    .flash{padding:0.5rem 1rem;margin:1rem 0;background:#eef;border-left:4px solid #33f}
-    .error{border-color:#f33;background:#fee}
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio Write-Up Hacking">
+  <meta name="theme-color" content="#3b82f6">
+  <title>{% block title %}Portfolio{% endblock %} | Write-Up Hacking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=3">
+  <link rel="stylesheet" href="{{ url_for('static', filename='pygments.css') }}?v=3">
   {% block head %}{% endblock %}
 </head>
+
 <body>
-  <nav><a href="{{ url_for('index') }}">🏠 Home</a><a href="{{ url_for('admin_login') }}">🔐 Admin</a></nav>
-  {% with msgs = get_flashed_messages(with_categories=true) %}
-    {% for cat,msg in msgs %}<div class="flash {{ cat }}">{{ msg }}</div>{% endfor %}
-  {% endwith %}
-  <main>{% block content %}{% endblock %}</main>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="{{ url_for('index') }}" class="logo">
+          <span>🔐</span>
+          <span>Portfolio</span>
+        </a>
+        <div class="nav-links">
+          <a href="{{ url_for('index') }}">Home</a>
+          <a href="{{ url_for('search') }}">Search</a>
+          <a href="{{ url_for('admin_login') }}">Admin</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      {% with msgs = get_flashed_messages(with_categories=true) %}
+      {% if msgs %}
+      {% for category, message in msgs %}
+      <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  {% block scripts %}{% endblock %}
 </body>
+
 </html>

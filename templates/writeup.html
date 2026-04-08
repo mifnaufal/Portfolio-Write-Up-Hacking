@@ -1,7 +1,23 @@
 {% extends "base.html" %}
 {% block title %}{{ writeup.title }}{% endblock %}
 {% block content %}
-<h1>{{ writeup.title }}</h1>
-<p><small>{{ writeup.created_at }} | {% for c in categories %}{{ c }}{% if not loop.last %}, {% endif %}{% endfor %}</small></p>
-<article>{{ html_content|safe }}</article>
+<article>
+  <header style="margin-bottom: 2rem;">
+    <h1>{{ writeup.title }}</h1>
+    <div class="writeup-meta" style="margin-top: 1rem;">
+      <span class="badge">📅 {{ writeup.created_at[:10] }}</span>
+      {% for cat in categories %}
+        <span class="badge">🏷️ {{ cat }}</span>
+      {% endfor %}
+    </div>
+  </header>
+  
+  <div class="article-content">
+    {{ html_content|safe }}
+  </div>
+  
+  <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">← Kembali ke Home</a>
+  </div>
+</article>
 {% endblock %}

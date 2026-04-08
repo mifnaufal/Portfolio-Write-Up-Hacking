@@ -2,11 +2,58 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 <h1>Write-Ups</h1>
-<form action="{{ url_for('search') }}" method="get"><input name="q" placeholder="Cari..."><button>🔍</button></form>
-<ul>
-{% for w in writeups %}
-  <li><a href="{{ url_for('writeup_detail', slug=w.slug) }}">{{ w.title }}</a> 
-  {% if w.cats %}<small>→ {{ w.cats }}</small>{% endif %}</li>
-{% else %}<li>Belum ada write-up.</li>{% endfor %}
+<p style="color: var(--text-secondary); margin-bottom: 2rem;">
+  Dokumentasi pembelajaran hacking & cybersecurity
+</p>
+
+<div class="search-box">
+  <form action="{{ url_for('search') }}" method="get" style="display: flex; gap: 1rem; flex: 1;">
+    <input type="text" name="q" placeholder="Cari write-up..." required>
+    <button type="submit" class="btn">🔍 Search</button>
+  </form>
+</div>
+
+<div class="filter-tags" id="filters">
+  <button class="filter-btn active" data-cat="all">All</button>
+  {% for c in categories %}
+    <button class="filter-btn" data-cat="{{ c.slug }}">{{ c.name }}</button>
+  {% endfor %}
+</div>
+
+<ul class="writeup-list" id="wu-list">
+  {% for w in writeups %}
+    <li class="writeup-item" data-cats="{{ w.cats or '' }}">
+      <a href="{{ url_for('writeup_detail', slug=w.slug) }}" class="writeup-title">
+        <span>📄</span>
+        {{ w.title }}
+      </a>
+      <div class="writeup-meta">
+        <span>📅 {{ w.created_at[:10] }}</span>
+        {% if w.cats %}
+          <span>🏷️ {{ w.cats }}</span>
+        {% endif %}
+      </div>
+    </li>
+  {% else %}
+    <li class="card text-center">
+      <p style="color: var(--text-secondary);">Belum ada write-up. Stay tuned! 🚀</p>
+    </li>
+  {% endfor %}
 </ul>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.dataset.cat;
+    document.querySelectorAll('#wu-list .writeup-item').forEach(item => {
+      const cats = item.dataset.cats || '';
+      item.style.display = (cat === 'all' || cats.includes(cat)) ? 'flex' : 'none';
+    });
+  });
+});
+</script>
 {% endblock %}
