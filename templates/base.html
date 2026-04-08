@@ -1,52 +1,308 @@
 <!DOCTYPE html>
-<html lang="id">
-
+<html lang="id" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio Write-Up Hacking">
-  <meta name="theme-color" content="#3b82f6">
-  <title>{% block title %}Portfolio{% endblock %} | Write-Up Hacking</title>
+  <meta name="description" content="Portfolio Write-Up Hacking - Dokumentasi pembelajaran hacking & cybersecurity">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>{% block title %}Home{% endblock %} | Write-Up Hacking</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=3">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='pygments.css') }}?v=3">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          colors: {
+            dark: {
+              900: '#0a0a0f',
+              800: '#111113',
+              700: '#1a1a1f',
+              600: '#242429',
+              500: '#2a2a30',
+              400: '#3a3a42',
+            },
+            accent: {
+              50: '#fef3c7',
+              100: '#fde68a',
+              200: '#fcd34d',
+              300: '#fbbf24',
+              400: '#f59e0b',
+              500: '#d97706',
+              600: '#b45309',
+            }
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.6s ease-out forwards',
+            'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+            'slide-in': 'slideIn 0.3s ease-out forwards',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            slideIn: {
+              '0%': { opacity: '0', transform: 'translateY(-10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .glass {
+      background: rgba(26, 26, 31, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+    
+    .glow {
+      box-shadow: 0 0 40px rgba(245, 158, 11, 0.15);
+    }
+    
+    .glow:hover {
+      box-shadow: 0 0 60px rgba(245, 158, 11, 0.25);
+    }
+    
+    .article-content h1,
+    .article-content h2,
+    .article-content h3 {
+      scroll-margin-top: 100px;
+    }
+    
+    .dark ::selection {
+      background: rgba(245, 158, 11, 0.3);
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .float-animation {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+    .delay-400 { animation-delay: 400ms; }
+  </style>
+  
   {% block head %}{% endblock %}
 </head>
-
-<body>
-  <header>
-    <div class="container">
-      <nav>
-        <a href="{{ url_for('index') }}" class="logo">
-          <span>🔐</span>
-          <span>Portfolio</span>
+<body class="bg-dark-900 text-white font-sans min-h-screen flex flex-col">
+  
+  <header class="fixed top-0 left-0 right-0 z-50 glass border-b border-dark-600/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <a href="{{ url_for('index') }}" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-accent-400 to-accent-600 flex items-center justify-center text-xl sm:text-2xl shadow-lg group-hover:scale-105 transition-transform duration-300">
+            🛡️
+          </div>
+          <div class="hidden sm:block">
+            <h1 class="text-lg sm:text-xl font-bold tracking-tight">Write-Up Hacking</h1>
+            <p class="text-xs text-dark-400 font-normal">Portfolio Cybersecurity</p>
+          </div>
         </a>
-        <div class="nav-links">
-          <a href="{{ url_for('index') }}">Home</a>
-          <a href="{{ url_for('search') }}">Search</a>
-          <a href="{{ url_for('admin_login') }}">Admin</a>
+        
+        <div class="flex-1 max-w-md mx-4 sm:mx-8">
+          <form action="{{ url_for('search') }}" method="get" class="relative">
+            <input 
+              type="text" 
+              name="q" 
+              placeholder="Cari write-up..." 
+              class="w-full bg-dark-700/50 border border-dark-500/50 rounded-xl px-4 py-2.5 pl-11 text-sm placeholder:text-dark-400 focus:outline-none focus:border-accent-400/50 focus:ring-2 focus:ring-accent-400/20 transition-all duration-300"
+            >
+            <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-dark-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </form>
         </div>
-      </nav>
+        
+        <nav class="flex items-center gap-2">
+          <a href="{{ url_for('index') }}" class="nav-link px-4 py-2 rounded-xl text-sm font-medium text-dark-300 hover:text-white hover:bg-dark-700/50 transition-all duration-300 {% if request.endpoint == 'index' %}text-white bg-dark-700/50{% endif %}">
+            Home
+          </a>
+          <a href="{{ url_for('admin_login') }}" class="nav-link px-4 py-2 rounded-xl text-sm font-medium text-dark-300 hover:text-white hover:bg-dark-700/50 transition-all duration-300 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+            </svg>
+            <span class="hidden sm:inline">Admin</span>
+          </a>
+        </nav>
+      </div>
     </div>
   </header>
 
-  <main>
-    <div class="container">
-      {% with msgs = get_flashed_messages(with_categories=true) %}
+  <main class="flex-1 pt-24 sm:pt-28">
+    {% with msgs = get_flashed_messages(with_categories=true) %}
       {% if msgs %}
-      {% for category, message in msgs %}
-      <div class="flash {{ category }}">{{ message }}</div>
-      {% endfor %}
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+          {% for category, message in msgs %}
+            <div class="flash-{{ category }} animate-slide-in px-5 py-4 rounded-2xl mb-4 flex items-center gap-3">
+              {% if category == 'success' %}
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              {% elif category == 'error' %}
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              {% else %}
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              {% endif %}
+              <span class="font-medium">{{ message }}</span>
+            </div>
+          {% endfor %}
+        </div>
       {% endif %}
-      {% endwith %}
-
-      {% block content %}{% endblock %}
-    </div>
+    {% endwith %}
+    
+    {% block content %}{% endblock %}
   </main>
 
+  <footer class="border-t border-dark-700 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-accent-400 to-accent-600 flex items-center justify-center text-xl shadow-lg">
+              🛡️
+            </div>
+            <span class="text-lg font-bold">Write-Up Hacking</span>
+          </div>
+          <p class="text-dark-400 text-sm leading-relaxed">
+            Dokumentasi pembelajaran hacking dan cybersecurity. Berbagi pengetahuan untuk komunitas keamanan siber Indonesia.
+          </p>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4 text-dark-200">Quick Links</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="{{ url_for('index') }}" class="text-dark-400 hover:text-accent-400 transition-colors">Home</a></li>
+            <li><a href="{{ url_for('admin_login') }}" class="text-dark-400 hover:text-accent-400 transition-colors">Admin Panel</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4 text-dark-200">Tech Stack</h4>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-dark-700 rounded-lg text-xs text-dark-300">Python</span>
+            <span class="px-3 py-1 bg-dark-700 rounded-lg text-xs text-dark-300">Flask</span>
+            <span class="px-3 py-1 bg-dark-700 rounded-lg text-xs text-dark-300">Markdown</span>
+            <span class="px-3 py-1 bg-dark-700 rounded-lg text-xs text-dark-300">Tailwind CSS</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="pt-8 border-t border-dark-700 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-dark-500 text-sm">
+          © 2026 Write-Up Hacking. Built with 💛 for the community.
+        </p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-dark-400 hover:text-accent-400 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const cards = document.querySelectorAll('.animate-on-scroll');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationDelay = `${index * 100}ms`;
+            entry.target.classList.add('animate-fade-in-up');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      cards.forEach(card => observer.observe(card));
+      
+      document.querySelectorAll('.btn-primary').forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-2px)';
+        });
+        btn.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+    });
+  </script>
+  
   {% block scripts %}{% endblock %}
 </body>
-
 </html>

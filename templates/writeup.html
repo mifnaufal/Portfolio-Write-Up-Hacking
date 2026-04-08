@@ -1,18 +1,22 @@
 {% extends "base.html" %}
 {% block title %}{{ writeup.title }}{% endblock %}
 {% block content %}
-<article>
+
+<article style="max-width: 800px; margin: 0 auto;">
   <header style="margin-bottom: 2rem;">
-    <h1>{{ writeup.title }}</h1>
-    <div class="writeup-meta" style="margin-top: 1rem;">
-      <span class="badge">📅 {{ writeup.created_at[:10] }}</span>
+    <div class="flex gap-2" style="margin-bottom: 1rem;">
       {% for cat in categories %}
-        <span class="badge">🏷️ {{ cat }}</span>
+        <span class="badge">{{ cat }}</span>
       {% endfor %}
+    </div>
+    <h1 style="font-size: 2rem; margin-bottom: 1rem;">{{ writeup.title }}</h1>
+    <div class="article-meta" style="color: var(--text-secondary);">
+      <span>📅 {{ writeup.created_at[:10] }}</span>
+      <span>⏱️ Baca 5 menit</span>
     </div>
   </header>
   
-  <div class="article-content">
+  <div class="article-content" style="background: var(--bg-secondary); padding: 2rem; border-radius: 16px; border: 1px solid var(--border);">
     {{ html_content|safe }}
   </div>
   
@@ -20,4 +24,5 @@
     <a href="{{ url_for('index') }}" class="btn btn-secondary">← Kembali ke Home</a>
   </div>
 </article>
+
 {% endblock %}
