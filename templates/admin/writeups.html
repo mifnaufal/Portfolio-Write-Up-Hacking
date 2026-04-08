@@ -1,92 +1,175 @@
 {% extends "base.html" %}
 {% block title %}Manage Write-Ups{% endblock %}
+{% block head %}
+<style>
+  input, textarea, select {
+    background: rgba(26, 26, 31, 0.5) !important;
+    border: 2px solid #2a2a30 !important;
+    color: white !important;
+    padding: 0.875rem 1rem !important;
+    border-radius: 0.75rem !important;
+    width: 100% !important;
+    font-size: 1rem !important;
+    transition: all 0.3s !important;
+  }
+  input:focus, textarea:focus, select:focus {
+    outline: none !important;
+    border-color: #f59e0b !important;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1) !important;
+  }
+  textarea {
+    min-height: 200px !important;
+    resize: vertical !important;
+    font-family: 'Fira Code', monospace !important;
+  }
+  label {
+    display: block !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.5rem !important;
+    color: #e2e8f0 !important;
+  }
+  small {
+    color: #64748b !important;
+    display: block !important;
+    margin-top: 0.5rem !important;
+  }
+  input[type="checkbox"] {
+    width: auto !important;
+    padding: 0 !important;
+    margin-right: 0.5rem !important;
+  }
+</style>
+{% endblock %}
 {% block content %}
-<div class="admin-header">
-  <h2>✍️ Manage Write-Ups</h2>
-  <div class="flex gap-2">
-    <a href="{{ url_for('admin_categories') }}" class="btn btn-secondary">Categories</a>
-    <a href="{{ url_for('admin_logout') }}" class="btn btn-danger">Logout</a>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+  <header class="mb-8 animate-fade-in-up">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Manage Write-Ups</h1>
+        <p class="text-dark-400 mt-1">Create and manage your cybersecurity write-ups</p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a href="{{ url_for('admin_categories') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-dark-700 border border-dark-600 text-white font-medium rounded-xl hover:bg-dark-600 hover:border-dark-500 transition-all duration-300">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+          </svg>
+          Categories
+        </a>
+        <a href="{{ url_for('index') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-dark-700 border border-dark-600 text-white font-medium rounded-xl hover:bg-dark-600 hover:border-dark-500 transition-all duration-300">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+          </svg>
+          View Site
+        </a>
+        <a href="{{ url_for('admin_logout') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-red-500/10 border border-red-500/20 text-red-400 font-medium rounded-xl hover:bg-red-500/20 hover:border-red-500/30 transition-all duration-300">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+          </svg>
+          Logout
+        </a>
+      </div>
+    </div>
+  </header>
+  
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="lg:col-span-2">
+      <div class="bg-dark-800/50 border border-dark-700/50 rounded-3xl p-6 sm:p-8 animate-fade-in-up">
+        <h2 class="text-xl font-bold mb-6 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-xl bg-accent-400/10 flex items-center justify-center text-accent-400">📝</span>
+          Create New Write-Up
+        </h2>
+        
+        <form method="post" class="space-y-6">
+          {{ form.hidden_tag() }}
+          
+          <div class="form-group">
+            <label for="title">Title</label>
+            {{ form.title(id="title", placeholder="Write-up title") }}
+          </div>
+          
+          <div class="form-group">
+            <label for="content_md">Content (Markdown)</label>
+            {{ form.content_md(id="content_md", placeholder="# Heading\n\nYour content here...") }}
+          </div>
+          
+          <div class="form-group">
+            <label>Categories</label>
+            {{ form.categories(placeholder="Web Hacking, Buffer Overflow, OSINT") }}
+            <small>Separate with commas. New categories will be auto-created.</small>
+            {% if categories %}
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="text-xs text-dark-400">Available:</span>
+              {% for c in categories %}
+              <span class="inline-flex items-center px-3 py-1 bg-dark-700 rounded-lg text-xs text-dark-300 border border-dark-600">{{ c.name }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          
+          <div class="form-group">
+            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+              {{ form.is_published() }}
+              <span>{{ form.is_published.label.text }}</span>
+            </label>
+          </div>
+          
+          <button type="submit" class="btn-primary w-full py-4 bg-gradient-to-r from-accent-400 to-accent-500 text-dark-900 font-semibold rounded-xl shadow-lg shadow-accent-400/25 hover:shadow-accent-400/40 transition-all duration-300 flex items-center justify-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+            </svg>
+            <span>Create Write-Up</span>
+          </button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="lg:col-span-1">
+      <div class="bg-dark-800/50 border border-dark-700/50 rounded-3xl p-6 sm:p-8 animate-fade-in-up delay-100">
+        <h2 class="text-xl font-bold mb-6 flex items-center gap-3">
+          <span class="w-10 h-10 rounded-xl bg-emerald-400/10 flex items-center justify-center text-emerald-400">📋</span>
+          All Write-Ups
+        </h2>
+        
+        <div class="space-y-3">
+          {% for w in writeups %}
+          <div class="bg-dark-700/30 border border-dark-600/50 rounded-xl p-4 group">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h3 class="font-medium text-sm line-clamp-2 flex-1">{{ w.title }}</h3>
+              {% if w.is_published %}
+              <span class="shrink-0 px-2 py-1 bg-emerald-400/10 text-emerald-400 text-xs font-medium rounded-lg">Published</span>
+              {% else %}
+              <span class="shrink-0 px-2 py-1 bg-amber-400/10 text-amber-400 text-xs font-medium rounded-lg">Draft</span>
+              {% endif %}
+            </div>
+            <p class="text-xs text-dark-400 mb-3">{{ w.created_at[:10] }}</p>
+            <div class="flex gap-2">
+              <a href="{{ url_for('admin_wu_edit', id=w.id) }}" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-dark-600 text-white text-xs font-medium rounded-lg hover:bg-dark-500 transition-colors">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                </svg>
+                Edit
+              </a>
+              <form method="post" action="{{ url_for('admin_wu_delete', id=w.id) }}" class="flex-1" onsubmit="return confirm('Delete this write-up?')">
+                <button type="submit" class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-red-500/10 text-red-400 text-xs font-medium rounded-lg hover:bg-red-500/20 transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                  </svg>
+                  Delete
+                </button>
+              </form>
+            </div>
+          </div>
+          {% else %}
+          <div class="text-center py-8 text-dark-400">
+            <span class="text-3xl mb-3 block">📭</span>
+            <p class="text-sm">No write-ups yet</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="card">
-  <h3>Create New Write-Up</h3>
-  <form method="post" style="margin-top: 1.5rem;">
-    {{ form.hidden_tag() }}
-    
-    <div class="form-group">
-      <label for="title">Title</label>
-      {{ form.title(id="title", placeholder="Write-up title") }}
-    </div>
-    
-    <div class="form-group">
-      <label for="content_md">Content (Markdown)</label>
-      {{ form.content_md(id="content_md", placeholder="# Heading\n\nYour content here...") }}
-    </div>
-    
-    <div class="form-group">
-      <label>Categories</label>
-      {{ form.categories(placeholder="Web Hacking, Buffer Overflow, OSINT") }}
-      <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">
-        Separate with commas. New categories will be auto-created.
-      </small>
-      {% if categories %}
-        <div style="margin-top: 0.75rem;">
-          <strong style="color: var(--accent);">Available:</strong>
-          {% for c in categories %}
-            <span class="badge" style="margin: 0.25rem;">{{ c.name }}</span>
-          {% endfor %}
-        </div>
-      {% endif %}
-    </div>
-    
-    <div class="form-group">
-      <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-        {{ form.is_published() }}
-        <span>{{ form.is_published.label.text }}</span>
-      </label>
-    </div>
-    
-    {{ form.submit(class="btn") }}
-  </form>
-</div>
-
-<div class="card mt-2">
-  <h3>All Write-Ups</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Status</th>
-        <th>Created</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for w in writeups %}
-        <tr>
-          <td><a href="{{ url_for('writeup_detail', slug=w.slug) }}" target="_blank">{{ w.title }}</a></td>
-          <td>
-            {% if w.is_published %}
-              <span class="badge" style="background: var(--success); color: white;">Published</span>
-            {% else %}
-              <span class="badge" style="background: var(--warning); color: black;">Draft</span>
-            {% endif %}
-          </td>
-          <td>{{ w.created_at[:10] }}</td>
-          <td>
-            <a href="{{ url_for('admin_wu_edit', id=w.id) }}" class="btn btn-sm btn-secondary">✏️ Edit</a>
-            <form method="post" action="{{ url_for('admin_wu_delete', id=w.id) }}" style="display: inline;" onsubmit="return confirm('Delete this write-up?')">
-              <button type="submit" class="btn btn-sm btn-danger">🗑️ Delete</button>
-            </form>
-          </td>
-        </tr>
-      {% else %}
-        <tr>
-          <td colspan="4" class="text-center" style="color: var(--text-secondary);">No write-ups yet</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
 {% endblock %}

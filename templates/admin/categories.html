@@ -1,18 +1,107 @@
 {% extends "base.html" %}
-{% block title %}Kategori{% endblock %}
+{% block title %}Manage Categories{% endblock %}
+{% block head %}
+<style>
+  input {
+    background: rgba(26, 26, 31, 0.5) !important;
+    border: 2px solid #2a2a30 !important;
+    color: white !important;
+    padding: 0.875rem 1rem !important;
+    border-radius: 0.75rem !important;
+    font-size: 1rem !important;
+    transition: all 0.3s !important;
+  }
+  input:focus {
+    outline: none !important;
+    border-color: #f59e0b !important;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1) !important;
+  }
+</style>
+{% endblock %}
 {% block content %}
-<h2>📂 Kategori</h2>
-<form method="post">{{ form.hidden_tag() }}{{ form.name() }} {{ form.submit() }}</form>
-<ul>
-  {% for c in categories %}
-  <li>{{ c.name }} 
-    <form method="post" action="{{ url_for('admin_cat_edit', id=c.id) }}" style="display:inline;margin:0 .5rem">
-      <input name="name" value="{{ c.name }}" style="width:auto;padding:.25rem"><button>💾</button>
-    </form>
-    <form method="post" action="{{ url_for('admin_cat_delete', id=c.id) }}" style="display:inline" onsubmit="return confirm('Hapus?')">
-      <button style="background:#ef4444">🗑️</button>
-    </form>
-  </li>{% endfor %}
-</ul>
-<a href="{{ url_for('admin_writeups') }}">→ Write-Up</a> | <a href="{{ url_for('admin_logout') }}">Logout</a>
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+  <header class="mb-8 animate-fade-in-up">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight flex items-center gap-3">
+          <span class="w-12 h-12 rounded-2xl bg-purple-400/10 flex items-center justify-center text-2xl">📂</span>
+          Manage Categories
+        </h1>
+        <p class="text-dark-400 mt-1">Organize your write-ups with categories</p>
+      </div>
+      <div class="flex gap-3">
+        <a href="{{ url_for('admin_writeups') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-dark-700 border border-dark-600 text-white font-medium rounded-xl hover:bg-dark-600 hover:border-dark-500 transition-all duration-300">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          Write-Ups
+        </a>
+        <a href="{{ url_for('admin_logout') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-red-500/10 border border-red-500/20 text-red-400 font-medium rounded-xl hover:bg-red-500/20 hover:border-red-500/30 transition-all duration-300">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+          </svg>
+          Logout
+        </a>
+      </div>
+    </div>
+  </header>
+  
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div class="bg-dark-800/50 border border-dark-700/50 rounded-3xl p-6 sm:p-8 animate-fade-in-up">
+      <h2 class="text-xl font-bold mb-6 flex items-center gap-3">
+        <span class="w-10 h-10 rounded-xl bg-accent-400/10 flex items-center justify-center text-accent-400">➕</span>
+        Add New Category
+      </h2>
+      
+      <form method="post" class="space-y-4">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+          {{ form.name(id="cat-name", placeholder="Category name") }}
+        </div>
+        <button type="submit" class="btn-primary w-full py-3.5 bg-gradient-to-r from-accent-400 to-accent-500 text-dark-900 font-semibold rounded-xl shadow-lg shadow-accent-400/25 hover:shadow-accent-400/40 transition-all duration-300">
+          Create Category
+        </button>
+      </form>
+    </div>
+    
+    <div class="bg-dark-800/50 border border-dark-700/50 rounded-3xl p-6 sm:p-8 animate-fade-in-up delay-100">
+      <h2 class="text-xl font-bold mb-6 flex items-center gap-3">
+        <span class="w-10 h-10 rounded-xl bg-emerald-400/10 flex items-center justify-center text-emerald-400">📋</span>
+        All Categories
+      </h2>
+      
+      <div class="space-y-3 max-h-[400px] overflow-y-auto pr-2 -mr-2">
+        {% for c in categories %}
+        <div class="bg-dark-700/30 border border-dark-600/50 rounded-xl p-4 group">
+          <form method="post" action="{{ url_for('admin_cat_edit', id=c.id) }}" class="flex items-center gap-3">
+            <input type="text" name="name" value="{{ c.name }}" class="flex-1 !py-2.5 !text-sm">
+            <button type="submit" class="shrink-0 p-2.5 bg-emerald-500/10 text-emerald-400 rounded-lg hover:bg-emerald-500/20 transition-colors" title="Save">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </button>
+          </form>
+          <div class="flex items-center justify-between mt-3 pt-3 border-t border-dark-600/50">
+            <span class="text-xs text-dark-400">ID: {{ c.id }}</span>
+            <form method="post" action="{{ url_for('admin_cat_delete', id=c.id) }}" onsubmit="return confirm('Delete this category?')">
+              <button type="submit" class="p-2 bg-red-500/10 text-red-400 rounded-lg hover:bg-red-500/20 transition-colors" title="Delete">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+        {% else %}
+        <div class="text-center py-8 text-dark-400">
+          <span class="text-3xl mb-3 block">📭</span>
+          <p class="text-sm">No categories yet</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

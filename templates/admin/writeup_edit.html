@@ -1,49 +1,110 @@
 {% extends "base.html" %}
 {% block title %}Edit Write-Up{% endblock %}
+{% block head %}
+<style>
+  input, textarea, select {
+    background: rgba(26, 26, 31, 0.5) !important;
+    border: 2px solid #2a2a30 !important;
+    color: white !important;
+    padding: 0.875rem 1rem !important;
+    border-radius: 0.75rem !important;
+    width: 100% !important;
+    font-size: 1rem !important;
+    transition: all 0.3s !important;
+  }
+  input:focus, textarea:focus, select:focus {
+    outline: none !important;
+    border-color: #f59e0b !important;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1) !important;
+  }
+  textarea {
+    min-height: 200px !important;
+    resize: vertical !important;
+    font-family: 'Fira Code', monospace !important;
+  }
+  label {
+    display: block !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.5rem !important;
+    color: #e2e8f0 !important;
+  }
+  small {
+    color: #64748b !important;
+    display: block !important;
+    margin-top: 0.5rem !important;
+  }
+  input[type="checkbox"] {
+    width: auto !important;
+    padding: 0 !important;
+    margin-right: 0.5rem !important;
+  }
+</style>
+{% endblock %}
 {% block content %}
-<div class="admin-header">
-  <h2>✏️ Edit Write-Up</h2>
-  <a href="{{ url_for('admin_writeups') }}" class="btn btn-secondary">← Back</a>
-</div>
 
-<div class="card">
-  <form method="post">
-    {{ form.hidden_tag() }}
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+  <header class="mb-8 animate-fade-in-up">
+    <a href="{{ url_for('admin_writeups') }}" class="inline-flex items-center gap-2 text-dark-400 hover:text-accent-400 transition-colors mb-6 group">
+      <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+      </svg>
+      <span>Kembali ke Manage Write-Ups</span>
+    </a>
     
-    <div class="form-group">
-      <label for="title">Title</label>
-      {{ form.title(id="title") }}
-    </div>
-    
-    <div class="form-group">
-      <label for="content_md">Content (Markdown)</label>
-      {{ form.content_md(id="content_md") }}
-    </div>
-    
-    <div class="form-group">
-      <label>Categories</label>
-      {{ form.categories() }}
-      <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">
-        Separate with commas. New categories will be auto-created.
-      </small>
-      {% if categories %}
-        <div style="margin-top: 0.75rem;">
-          <strong style="color: var(--accent);">Available:</strong>
+    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight flex items-center gap-3">
+      <span class="w-12 h-12 rounded-2xl bg-accent-400/10 flex items-center justify-center text-2xl">✏️</span>
+      Edit Write-Up
+    </h1>
+  </header>
+  
+  <div class="bg-dark-800/50 border border-dark-700/50 rounded-3xl p-6 sm:p-8 animate-fade-in-up delay-100">
+    <form method="post" class="space-y-6">
+      {{ form.hidden_tag() }}
+      
+      <div class="form-group">
+        <label for="title">Title</label>
+        {{ form.title(id="title") }}
+      </div>
+      
+      <div class="form-group">
+        <label for="content_md">Content (Markdown)</label>
+        {{ form.content_md(id="content_md") }}
+      </div>
+      
+      <div class="form-group">
+        <label>Categories</label>
+        {{ form.categories() }}
+        <small>Separate with commas. New categories will be auto-created.</small>
+        {% if categories %}
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="text-xs text-dark-400">Available:</span>
           {% for c in categories %}
-            <span class="badge" style="margin: 0.25rem;">{{ c.name }}</span>
+          <span class="inline-flex items-center px-3 py-1 bg-dark-700 rounded-lg text-xs text-dark-300 border border-dark-600">{{ c.name }}</span>
           {% endfor %}
         </div>
-      {% endif %}
-    </div>
-    
-    <div class="form-group">
-      <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-        {{ form.is_published() }}
-        <span>{{ form.is_published.label.text }}</span>
-      </label>
-    </div>
-    
-    {{ form.submit(class="btn") }}
-  </form>
+        {% endif %}
+      </div>
+      
+      <div class="form-group">
+        <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+          {{ form.is_published() }}
+          <span>{{ form.is_published.label.text }}</span>
+        </label>
+      </div>
+      
+      <div class="flex flex-wrap gap-4 pt-4">
+        <button type="submit" class="btn-primary inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-accent-400 to-accent-500 text-dark-900 font-semibold rounded-xl shadow-lg shadow-accent-400/25 hover:shadow-accent-400/40 transition-all duration-300">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span>Save Changes</span>
+        </button>
+        <a href="{{ url_for('admin_writeups') }}" class="inline-flex items-center gap-2 px-8 py-4 bg-dark-700 border border-dark-600 text-white font-medium rounded-xl hover:bg-dark-600 hover:border-dark-500 transition-all duration-300">
+          Cancel
+        </a>
+      </div>
+    </form>
+  </div>
 </div>
+
 {% endblock %}
