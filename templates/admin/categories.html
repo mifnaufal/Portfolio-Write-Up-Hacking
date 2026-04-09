@@ -75,6 +75,7 @@
         {% for c in categories %}
         <div class="bg-dark-700/30 border border-dark-600/50 rounded-xl p-4 group">
           <form method="post" action="{{ url_for('admin_cat_edit', id=c.id) }}" class="flex items-center gap-3">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="text" name="name" value="{{ c.name }}" class="flex-1 !py-2.5 !text-sm">
             <button type="submit" class="shrink-0 p-2.5 bg-emerald-500/10 text-emerald-400 rounded-lg hover:bg-emerald-500/20 transition-colors" title="Save">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -85,6 +86,7 @@
           <div class="flex items-center justify-between mt-3 pt-3 border-t border-dark-600/50">
             <span class="text-xs text-dark-400">ID: {{ c.id }}</span>
             <form method="post" action="{{ url_for('admin_cat_delete', id=c.id) }}" onsubmit="return confirm('Delete this category?')">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
               <button type="submit" class="p-2 bg-red-500/10 text-red-400 rounded-lg hover:bg-red-500/20 transition-colors" title="Delete">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>

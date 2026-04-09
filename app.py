@@ -5,13 +5,13 @@ import click
 import bcrypt
 import markdown
 from functools import wraps
-from flask import Flask, g, request, session, redirect, url_for, flash, render_template, abort
+from flask import Flask, g, request, session, redirect, url_for, flash, render_template, abort, send_from_directory
 from flask_wtf import FlaskForm, CSRFProtect
 from wtforms import StringField, TextAreaField, BooleanField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
 from config import Config
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 app.config.from_object(Config)
 csrf = CSRFProtect(app)
 
@@ -100,6 +100,10 @@ def parse_and_sync_categories(cat_string):
 
 @app.route('/')
 def index():
+    return send_from_directory('.', 'index.html')
+
+@app.route('/writeups')
+def writeups():
     db = get_db()
     writeups = db.execute("""
         SELECT w.id, w.title, w.slug, w.created_at, GROUP_CONCAT(c.name) as cats
@@ -108,7 +112,7 @@ def index():
         WHERE w.is_published=1 GROUP BY w.id ORDER BY w.created_at DESC
     """).fetchall()
     categories = db.execute("SELECT id, name, slug FROM categories ORDER BY name").fetchall()
-    return render_template('index.html', writeups=writeups, categories=categories)
+    return render_template('blog.html', writeups=writeups, categories=categories)
 
 @app.route('/category/<slug>')
 def category(slug):

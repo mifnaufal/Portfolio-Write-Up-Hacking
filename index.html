@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Miftahunnaufal Hidayat - Junior SOC Analyst, Full-Stack Developer & Penetration Tester. Building secure systems by day, breaking them by night.">
+  <meta name="author" content="Miftahunnaufal Hidayat">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>Miftahunnaufal Hidayat | Cybersecurity Engineer & Developer</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/portfolio.css">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+</head>
+<body>
+  
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="nav-brand">
+        <div class="nav-brand-icon">🛡️</div>
+        <span>Miftah</span>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#certifications" class="nav-link">Certs</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      
+      <div class="nav-cta">
+        <a href="https://github.com/mifnaufal" target="_blank" class="btn btn-secondary btn-sm">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="/writeups" class="btn btn-primary btn-sm">Write-Ups</a>
+      </div>
+      
+      <button class="mobile-menu-btn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="hero-gradient"></div>
+      <div class="hero-grid"></div>
+    </div>
+    
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span>Yogyakarta, Indonesia • Open to opportunities</span>
+        </div>
+        
+        <h1 class="hero-title">
+          Hi, I'm <span class="gradient-text">Miftahunnaufal</span><br>
+          Hidayat
+        </h1>
+        
+        <p class="hero-subtitle">
+          Junior SOC Analyst • Security Automation • Penetration Tester<br>
+          <span style="color: var(--text-muted);">Building secure systems by day, breaking them by night.</span>
+        </p>
+        
+        <div class="hero-roles">
+          <span class="hero-role highlight">🛡️ SOC Analyst</span>
+          <span class="hero-role">💻 Full-Stack Dev</span>
+          <span class="hero-role">🔍 Pentester</span>
+          <span class="hero-role">📱 Mobile Dev</span>
+        </div>
+        
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+            View Projects
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            Get in Touch
+          </a>
+        </div>
+        
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-value" data-count="6">6+</div>
+            <div class="hero-stat-label">Years Coding</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value" data-count="3">3+</div>
+            <div class="hero-stat-label">Years Security</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value" data-count="10">10+</div>
+            <div class="hero-stat-label">Articles Written</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value" data-count="5">Top 5</div>
+            <div class="hero-stat-label">National CTF</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scroll-indicator">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+          </svg>
+          <span>About Me</span>
+        </div>
+        <h2 class="section-title">The Story Behind the Screen</h2>
+        <p class="section-subtitle">Where coding meets cybersecurity — a unique blend of builder and breaker</p>
+      </div>
+      
+      <div class="about-grid">
+        <div class="about-image animate-on-scroll">
+          <div class="about-avatar">👨‍💻</div>
+          <div class="about-status">
+            <span class="about-status-dot"></span>
+            <span>Open to work</span>
+          </div>
+        </div>
+        
+        <div class="about-content animate-on-scroll" data-delay="100">
+          <h2>Security-Minded <span class="gradient-text">Developer</span></h2>
+          
+          <p class="about-intro">
+            I don't just write code that works — I write code that can't be broken.
+          </p>
+          
+          <p class="about-text">
+            Junior SOC Analyst with a dual-discipline background in offensive and defensive security. I bring 3+ years of ethical hacking experience to inform threat detection strategies, paired with a 6+ year development foundation used to build security automation tools.
+          </p>
+          
+          <p class="about-text">
+            Hands-on experience analyzing Windows Event Logs, Linux Syslogs, and web traffic for malicious activity. Proven ability to design SIEM detection rules, conduct digital forensics investigations, and automate monitoring workflows using Python and Bash.
+          </p>
+          
+          <div class="about-highlights">
+            <div class="about-highlight">
+              <div class="about-highlight-icon">🛡️</div>
+              <span class="about-highlight-text">SOC & Blue Team</span>
+            </div>
+            <div class="about-highlight">
+              <div class="about-highlight-icon">⚔️</div>
+              <span class="about-highlight-text">Penetration Testing</span>
+            </div>
+            <div class="about-highlight">
+              <div class="about-highlight-icon">💻</div>
+              <span class="about-highlight-text">Full-Stack Dev</span>
+            </div>
+            <div class="about-highlight">
+              <div class="about-highlight-icon">📱</div>
+              <span class="about-highlight-text">Mobile Dev (Flutter)</span>
+            </div>
+          </div>
+          
+          <div class="hero-actions" style="justify-content: flex-start;">
+            <a href="#contact" class="btn btn-primary">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+              Download CV
+            </a>
+            <a href="#projects" class="btn btn-secondary">View Projects</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="section" id="skills" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+          <span>Skills</span>
+        </div>
+        <h2 class="section-title">Technical Arsenal</h2>
+        <p class="section-subtitle">Technologies I work with to build secure systems and find vulnerabilities</p>
+      </div>
+      
+      <div class="skills-grid">
+        <div class="skill-category animate-on-scroll">
+          <div class="skill-category-icon">💻</div>
+          <h3 class="skill-category-title">Programming Languages</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Dart</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">Bash/Shell</span>
+            <span class="skill-tag">C</span>
+            <span class="skill-tag">Kotlin</span>
+          </div>
+        </div>
+        
+        <div class="skill-category animate-on-scroll" data-delay="100">
+          <div class="skill-category-icon">🌐</div>
+          <h3 class="skill-category-title">Web Development</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">React.js</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Express.js</span>
+            <span class="skill-tag">Flask</span>
+            <span class="skill-tag">Laravel</span>
+            <span class="skill-tag">Tailwind CSS</span>
+            <span class="skill-tag">EJS</span>
+          </div>
+        </div>
+        
+        <div class="skill-category animate-on-scroll" data-delay="200">
+          <div class="skill-category-icon">📱</div>
+          <h3 class="skill-category-title">Mobile Development</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Flutter</span>
+            <span class="skill-tag">Dart</span>
+            <span class="skill-tag">Android Native</span>
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">Supabase</span>
+          </div>
+        </div>
+        
+        <div class="skill-category animate-on-scroll" data-delay="300">
+          <div class="skill-category-icon">🛡️</div>
+          <h3 class="skill-category-title">SOC & Blue Team</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Wazuh</span>
+            <span class="skill-tag">Splunk</span>
+            <span class="skill-tag">Log Analysis</span>
+            <span class="skill-tag">SIEM</span>
+            <span class="skill-tag">Incident Response</span>
+            <span class="skill-tag">Digital Forensics</span>
+          </div>
+        </div>
+        
+        <div class="skill-category animate-on-scroll" data-delay="400">
+          <div class="skill-category-icon">⚔️</div>
+          <h3 class="skill-category-title">Penetration Testing</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Metasploit</span>
+            <span class="skill-tag">Burp Suite</span>
+            <span class="skill-tag">Nmap</span>
+            <span class="skill-tag">SQLmap</span>
+            <span class="skill-tag">Gobuster</span>
+            <span class="skill-tag">Wireshark</span>
+          </div>
+        </div>
+        
+        <div class="skill-category animate-on-scroll" data-delay="500">
+          <div class="skill-category-icon">🚀</div>
+          <h3 class="skill-category-title">DevOps & Tools</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GitHub Actions</span>
+            <span class="skill-tag">CI/CD</span>
+            <span class="skill-tag">Vercel</span>
+            <span class="skill-tag">PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+          </svg>
+          <span>Projects</span>
+        </div>
+        <h2 class="section-title">Featured Work</h2>
+        <p class="section-subtitle">Systems built and vulnerabilities found — impact over features</p>
+      </div>
+      
+      <div class="projects-grid">
+        <!-- SOC Home Lab -->
+        <div class="project-card animate-on-scroll">
+          <div class="project-image">🛡️</div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="project-tag">SOC</span>
+              <span class="project-tag">Blue Team</span>
+            </div>
+            <h3 class="project-title">SOC Home Lab — Log Analysis & Threat Detection</h3>
+            <p class="project-description">
+              Deployed a virtual SOC environment using Wazuh to aggregate and correlate logs across multiple endpoints. Authored custom detection rules targeting Brute Force, Port Scanning, and lateral movement patterns.
+            </p>
+            <div class="project-impact">
+              <span>✓</span>
+              Production-ready detection rules for Windows/Linux Event Logs
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/alxzy09/SOC-Learn" target="_blank" class="project-link">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Library Management System -->
+        <div class="project-card animate-on-scroll" data-delay="100">
+          <div class="project-image">📚</div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="project-tag">Full-Stack</span>
+              <span class="project-tag">Node.js</span>
+            </div>
+            <h3 class="project-title">Library Management System</h3>
+            <p class="project-description">
+              Full-stack library platform with multi-format catalog, admin CRUD, and atomic checkout/check-in. Features role-based access (admin/member), CSRF protection, and rate limiting.
+            </p>
+            <div class="project-impact">
+              <span>✓</span>
+              Serverless deployment on Vercel with Supabase PostgreSQL + RLS
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/mifnaufal/library-management-system" target="_blank" class="project-link">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                Source Code
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- AI Markdown Notes -->
+        <div class="project-card animate-on-scroll" data-delay="200">
+          <div class="project-image">🤖</div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="project-tag">AI/ML</span>
+              <span class="skill-tag">React</span>
+            </div>
+            <h3 class="project-title">AI-Powered Markdown Notes App</h3>
+            <p class="project-description">
+              Full-stack note-taking app with OpenAI integration for text summarization, rewriting (Formal/Casual/Academic), auto-save, word stats, and reading time estimation.
+            </p>
+            <div class="project-impact">
+              <span>✓</span>
+              Production-ready with axios interceptors, rate limiting, and custom hooks
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/mifnaufal/AI-Powered-Markdown-Notes-App" target="_blank" class="project-link">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Network Change Detection -->
+        <div class="project-card animate-on-scroll" data-delay="300">
+          <div class="project-image">🔍</div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="project-tag">Automation</span>
+              <span class="project-tag">Bash</span>
+            </div>
+            <h3 class="project-title">Automated Network Change Detection</h3>
+            <p class="project-description">
+              Bash-based monitoring script using Nmap and ndiff to detect unauthorized network topology changes with real-time Slack alerting.
+            </p>
+            <div class="project-impact">
+              <span>✓</span>
+              Reduced manual monitoring by 40%, faster vulnerability response
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/alxzy09/Automated-Network-Change-Detection-System" target="_blank" class="project-link">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Attendance App -->
+        <div class="project-card animate-on-scroll" data-delay="400">
+          <div class="project-image">📱</div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="project-tag">Mobile</span>
+              <span class="project-tag">Flutter</span>
+            </div>
+            <h3 class="project-title">Attendance App</h3>
+            <p class="project-description">
+              Cross-platform attendance tracker built with Flutter targeting Android, iOS, Web, and Desktop from a single codebase. Features leave request management and persistent local storage.
+            </p>
+            <div class="project-impact">
+              <span>✓</span>
+              Multi-platform from single codebase
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/mifnaufal/Attendance-App" target="_blank" class="project-link">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- VulnHub DC-3 -->
+        <div class="project-card animate-on-scroll" data-delay="500">
+          <div class="project-image">🏆</div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="project-tag">Pentest</span>
+              <span class="project-tag">CTF</span>
+            </div>
+            <h3 class="project-title">DC-3 VulnHub Walkthrough</h3>
+            <p class="project-description">
+              Complete black-box pentest documentation: exploited Joomla! 3.7.0 SQL Injection via SQLmap, cracked bcrypt hash with JtR, injected PHP reverse shell, and escalated via Linux Kernel exploit.
+            </p>
+            <div class="project-impact">
+              <span>✓</span>
+              Full kill chain documented from recon to root
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/alxzy09/DC3-vulnlabWalkthrough" target="_blank" class="project-link">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                Walkthrough
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section class="section" id="certifications" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+          </svg>
+          <span>Certifications</span>
+        </div>
+        <h2 class="section-title">Professional Certifications</h2>
+        <p class="section-subtitle">Continuously learning and validating skills</p>
+      </div>
+      
+      <div class="achievements-grid">
+        <div class="achievement-card animate-on-scroll">
+          <div class="achievement-icon">🎓</div>
+          <h3 class="achievement-title">Cisco Certified Ethical Hacker</h3>
+          <p class="achievement-description">Cisco Networking Academy</p>
+          <span class="achievement-badge">✓ Completed</span>
+        </div>
+        
+        <div class="achievement-card animate-on-scroll" data-delay="100">
+          <div class="achievement-icon">🔍</div>
+          <h3 class="achievement-title">Jr Penetration Tester</h3>
+          <p class="achievement-description">TryHackMe</p>
+          <span class="achievement-badge">✓ Completed</span>
+        </div>
+        
+        <div class="achievement-card animate-on-scroll" data-delay="200">
+          <div class="achievement-icon">🐛</div>
+          <h3 class="achievement-title">Bug Bounty Hunting & Web Security</h3>
+          <p class="achievement-description">zSecurity</p>
+          <span class="achievement-badge">✓ Completed</span>
+        </div>
+        
+        <div class="achievement-card animate-on-scroll" data-delay="300">
+          <div class="achievement-icon">☁️</div>
+          <h3 class="achievement-title">Cloud Practitioner Essentials</h3>
+          <p class="achievement-description">Dicoding Indonesia</p>
+          <span class="achievement-badge">✓ Completed</span>
+        </div>
+        
+        <div class="achievement-card animate-on-scroll" data-delay="400">
+          <div class="achievement-icon">🛡️</div>
+          <h3 class="achievement-title">Introduction to Critical Infrastructure Protection</h3>
+          <p class="achievement-description">OPSWAT</p>
+          <span class="achievement-badge">✓ Completed</span>
+        </div>
+        
+        <div class="achievement-card animate-on-scroll" data-delay="500">
+          <div class="achievement-icon">🚀</div>
+          <h3 class="achievement-title">Practical Junior Penetration Tester</h3>
+          <p class="achievement-description">TCM Security</p>
+          <span class="achievement-badge" style="background: rgba(245, 158, 11, 0.1); color: var(--accent);">⏳ In Progress</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span>Experience</span>
+        </div>
+        <h2 class="section-title">Journey So Far</h2>
+        <p class="section-subtitle">From coding enthusiast to security professional</p>
+      </div>
+      
+      <div class="timeline">
+        <div class="timeline-item animate-on-scroll">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            Nov 2025
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-role">Lead Cybersecurity Instructor</h3>
+            <p class="timeline-company">IDN Tech Verse — HackCurious Workshop</p>
+            <p class="timeline-description">
+              Designed and facilitated hands-on ethical hacking workshops for 10+ high school participants using VulnHub machines (DC1–DC3). Covered the full attack lifecycle: network scanning, exploitation, and post-exploitation. Achieved 95% positive feedback rate.
+            </p>
+            <div class="timeline-skills">
+              <span class="timeline-skill">Metasploit</span>
+              <span class="timeline-skill">Nmap</span>
+              <span class="timeline-skill">VulnHub</span>
+              <span class="timeline-skill">Linux</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="timeline-item animate-on-scroll" data-delay="100">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            Oct 2025
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-role">Guest Lecturer — Penetration Testing</h3>
+            <p class="timeline-company">Universitas Ahmad Dahlan (S2 Cybersecurity)</p>
+            <p class="timeline-description">
+              Delivered a guest lecture on ethical hacking and penetration testing methodologies to Master's (S2) students. Covered Social Engineering attack vectors and offered pro-bono pentest services to the university.
+            </p>
+            <div class="timeline-skills">
+              <span class="timeline-skill">Social Engineering</span>
+              <span class="timeline-skill">Reconnaissance</span>
+              <span class="timeline-skill">Teaching</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="timeline-item animate-on-scroll" data-delay="200">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            Sep 2025
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-role">Guest Web Development Instructor</h3>
+            <p class="timeline-company">SMP Negeri 10 Bandung</p>
+            <p class="timeline-description">
+              Taught HTML & CSS fundamentals through hands-on sessions for junior high school students. Introduced basic cybersecurity awareness including web vulnerabilities and distributed a custom PDF guide on penetration testing concepts.
+            </p>
+            <div class="timeline-skills">
+              <span class="timeline-skill">HTML</span>
+              <span class="timeline-skill">CSS</span>
+              <span class="timeline-skill">Security Awareness</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="timeline-item animate-on-scroll" data-delay="300">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            2024 - 2026
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-role">Software Engineering Student</h3>
+            <p class="timeline-company">IDN Boarding School</p>
+            <p class="timeline-description">
+              Intensive software engineering program covering full-stack development, mobile engineering, and DevOps fundamentals. Focus on Network Security, Programming, and System Architecture.
+            </p>
+            <div class="timeline-skills">
+              <span class="timeline-skill">Python</span>
+              <span class="timeline-skill">Flutter</span>
+              <span class="timeline-skill">Laravel</span>
+              <span class="timeline-skill">React</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="timeline-item animate-on-scroll" data-delay="400">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            2019 - Present
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-role">Self-Taught Developer & Security Researcher</h3>
+            <p class="timeline-company">6+ Years of Independent Learning</p>
+            <p class="timeline-description">
+              Started coding in 7th grade (2019). Progressed through building various web and mobile applications. Learned multiple programming languages and frameworks. Developed a strong foundation in clean code, software architecture, and security-first development.
+            </p>
+            <div class="timeline-skills">
+              <span class="timeline-skill">Python</span>
+              <span class="timeline-skill">JavaScript</span>
+              <span class="timeline-skill">Dart</span>
+              <span class="timeline-skill">PHP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section class="section" id="achievements" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+          </svg>
+          <span>Achievements</span>
+        </div>
+        <h2 class="section-title">Recognition & Milestones</h2>
+        <p class="section-subtitle">Key accomplishments that define the journey</p>
+      </div>
+      
+      <div class="achievements-grid">
+        <div class="achievement-card animate-on-scroll">
+          <div class="achievement-icon">🏆</div>
+          <h3 class="achievement-title">Top 5 National CTF</h3>
+          <p class="achievement-description">Ranked 5th place at ITTS national-level Capture The Flag competition</p>
+          <span class="achievement-badge">2025</span>
+        </div>
+        
+        <div class="achievement-card animate-on-scroll" data-delay="100">
+          <div class="achievement-icon">🔍</div>
+          <h3 class="achievement-title">Government XSS Vulnerability</h3>
+          <p class="achievement-description">Responsible disclosure of stored XSS in Bali Provincial Government's HR system</p>
+          <span class="achievement-badge">Bug Bounty</span>
+        </div>
+        
+        <div class="achievement-card animate-on-scroll" data-delay="200">
+          <div class="achievement-icon">📝</div>
+          <h3 class="achievement-title">10+ Technical Articles</h3>
+          <p class="achievement-description">Published walkthroughs on GitHub and Medium covering SQL injection, privilege escalation, and reconnaissance</p>
+          <span class="achievement-badge">Medium</span>
+        </div>
+        
+        <div class="achievement-card animate-on-scroll" data-delay="300">
+          <div class="achievement-icon">🎓</div>
+          <h3 class="achievement-title">Security Workshop Instructor</h3>
+          <p class="achievement-description">Conducted workshops teaching cybersecurity to 100+ students across multiple institutions</p>
+          <span class="achievement-badge">Community Impact</span>
+        </div>
+        
+        <div class="achievement-card animate-on-scroll" data-delay="400">
+          <div class="achievement-icon">📱</div>
+          <h3 class="achievement-title">Cross-Platform Development</h3>
+          <p class="achievement-description">Built mobile apps targeting Android, iOS, Web, and Desktop from a single Flutter codebase</p>
+          <span class="achievement-badge">Flutter</span>
+        </div>
+        
+        <div class="achievement-card animate-on-scroll" data-delay="500">
+          <div class="achievement-icon">🛡️</div>
+          <h3 class="achievement-title">Vodafone Innovus Disclosure</h3>
+          <p class="achievement-description">Found information disclosure via exposed WordPress REST API endpoint</p>
+          <span class="achievement-badge">HackerOne</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Write-ups CTA Section -->
+  <section class="section" id="writeups-cta">
+    <div class="container">
+      <div class="writeups-cta animate-on-scroll">
+        <div class="writeups-cta-content">
+          <div class="writeups-cta-icon">📚</div>
+          <h2 class="writeups-cta-title">Security Write-Ups & Tutorials</h2>
+          <p class="writeups-cta-description">
+            Dive into detailed cybersecurity documentation, CTF write-ups, vulnerability analysis, and hands-on tutorials. Learn by doing, explained by someone who loves to teach.
+          </p>
+          <div class="hero-actions" style="justify-content: center;">
+            <a href="/writeups" class="btn btn-primary">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+              </svg>
+              Browse Write-Ups
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          <span>Contact</span>
+        </div>
+        <h2 class="section-title">Let's Connect</h2>
+        <p class="section-subtitle">Have a project in mind or want to collaborate? I'm just a message away.</p>
+      </div>
+      
+      <div class="contact-wrapper">
+        <div class="contact-info animate-on-scroll">
+          <h3 class="contact-title">Get in Touch</h3>
+          <p class="contact-subtitle">
+            Whether it's about security research, development projects, or just chatting about tech — I'd love to hear from you.
+          </p>
+          
+          <div class="contact-methods">
+            <div class="contact-method">
+              <div class="contact-method-icon">📧</div>
+              <div class="contact-method-text">
+                <span class="contact-method-label">Email</span>
+                <span class="contact-method-value">naufalhhdd@gmail.com</span>
+              </div>
+            </div>
+            
+            <div class="contact-method">
+              <div class="contact-method-icon">📱</div>
+              <div class="contact-method-text">
+                <span class="contact-method-label">Phone</span>
+                <span class="contact-method-value">+62 856-4178-3101</span>
+              </div>
+            </div>
+            
+            <div class="contact-method">
+              <div class="contact-method-icon">📍</div>
+              <div class="contact-method-text">
+                <span class="contact-method-label">Location</span>
+                <span class="contact-method-value">Yogyakarta, Indonesia</span>
+              </div>
+            </div>
+            
+            <div class="contact-method">
+              <div class="contact-method-icon">💼</div>
+              <div class="contact-method-text">
+                <span class="contact-method-label">Status</span>
+                <span class="contact-method-value">Open to opportunities</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contact-socials">
+            <a href="https://github.com/mifnaufal" target="_blank" class="contact-social" title="GitHub">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://linkedin.com/in/miftahunnaufal-hidayat-601153385/" target="_blank" class="contact-social" title="LinkedIn">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://medium.com/@naufalhhdd" target="_blank" class="contact-social" title="Medium">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 3.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+            </a>
+            <a href="https://github.com/alxzy09" target="_blank" class="contact-social" title="GitHub (Alt)">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+          </div>
+        </div>
+        
+        <form class="contact-form animate-on-scroll" data-delay="100" id="contact-form">
+          <div class="form-group">
+            <label class="form-label" for="name">Name</label>
+            <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" class="form-input" placeholder="What's this about?">
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea id="message" name="message" class="form-textarea" placeholder="Your message..." required></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+            </svg>
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <div class="footer-brand-icon">🛡️</div>
+            <span>Miftahunnaufal</span>
+          </div>
+          <p class="footer-brand-text">
+            Cybersecurity professional with a builder's mindset. Building secure systems by day, breaking them by night. Always learning, always creating.
+          </p>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#about" class="footer-link">About</a></li>
+            <li><a href="#skills" class="footer-link">Skills</a></li>
+            <li><a href="#projects" class="footer-link">Projects</a></li>
+            <li><a href="#certifications" class="footer-link">Certifications</a></li>
+            <li><a href="#experience" class="footer-link">Experience</a></li>
+            <li><a href="#contact" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="/writeups" class="footer-link">Write-Ups</a></li>
+            <li><a href="https://github.com/mifnaufal" target="_blank" class="footer-link">GitHub</a></li>
+            <li><a href="https://linkedin.com/in/miftahunnaufal-hidayat-601153385/" target="_blank" class="footer-link">LinkedIn</a></li>
+            <li><a href="https://medium.com/@naufalhhdd" target="_blank" class="footer-link">Medium</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 Miftahunnaufal Hidayat. All rights reserved.</p>
+        <p class="footer-made">
+          Built with 💛 and lots of ☕
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="static/portfolio.js"></script>
+</body>
+</html>

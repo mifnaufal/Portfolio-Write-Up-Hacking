@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Security Write-Ups, CTF Solutions & Cybersecurity Tutorials by Miftahunnaufal Hidayat">
+  <meta name="author" content="Miftahunnaufal Hidayat">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>Write-Ups | Miftahunnaufal Hidayat</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/portfolio.css">
+  
+  <style>
+    /* Additional styles for Write-ups page */
+    .writeups-hero {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 120px;
+      padding-bottom: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .writeups-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    
+    .writeups-hero-content {
+      position: relative;
+      z-index: 10;
+    }
+    
+    .writeups-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+    
+    .writeup-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    
+    .writeup-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-8px);
+      box-shadow: var(--shadow);
+    }
+    
+    .writeup-card-image {
+      height: 180px;
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-card-hover) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .writeup-card-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+    }
+    
+    .writeup-card-content {
+      padding: 1.5rem;
+    }
+    
+    .writeup-card-category {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.375rem 0.875rem;
+      background: rgba(245, 158, 11, 0.1);
+      border-radius: 2rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    
+    .writeup-card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+    
+    .writeup-card-title:hover {
+      color: var(--accent);
+    }
+    
+    .writeup-card-excerpt {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    
+    .writeup-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    
+    .writeup-card-date {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    
+    .writeup-card-read-time {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    
+    .writeup-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    
+    .writeup-filter {
+      padding: 0.5rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 2rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .writeup-filter:hover,
+    .writeup-filter.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg-primary);
+    }
+    
+    .back-to-portfolio {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      margin-bottom: 2rem;
+      transition: var(--transition);
+    }
+    
+    .back-to-portfolio:hover {
+      color: var(--accent);
+    }
+    
+    .back-to-portfolio svg {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .coming-soon-card {
+      background: var(--bg-card);
+      border: 2px dashed var(--border);
+      border-radius: var(--radius-lg);
+      padding: 4rem 2rem;
+      text-align: center;
+      grid-column: 1 / -1;
+    }
+    
+    .coming-soon-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    
+    .coming-soon-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .coming-soon-text {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+    
+    @media (max-width: 768px) {
+      .writeups-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+</head>
+<body>
+  
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="nav-brand">
+        <div class="nav-brand-icon">🛡️</div>
+        <span>Miftah</span>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="/#about" class="nav-link">About</a></li>
+        <li><a href="/#skills" class="nav-link">Skills</a></li>
+        <li><a href="/#projects" class="nav-link">Projects</a></li>
+        <li><a href="/#experience" class="nav-link">Experience</a></li>
+        <li><a href="/#contact" class="nav-link">Contact</a></li>
+      </ul>
+      
+      <div class="nav-cta">
+        <a href="/" class="btn btn-secondary btn-sm">Back to Portfolio</a>
+      </div>
+      
+      <button class="mobile-menu-btn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Write-ups Hero -->
+  <section class="writeups-hero">
+    <div class="writeups-hero-content">
+      <div class="section-badge" style="margin: 0 auto 1.5rem;">
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+        </svg>
+        <span>Knowledge Sharing</span>
+      </div>
+      <h1 class="hero-title" style="font-size: clamp(2rem, 6vw, 4rem); margin-bottom: 1rem;">
+        Security <span class="gradient-text">Write-Ups</span>
+      </h1>
+      <p class="hero-subtitle" style="max-width: 600px; margin: 0 auto;">
+        Detailed walkthroughs, vulnerability analysis, and cybersecurity tutorials. 
+        Learn by doing, explained by someone who loves to teach.
+      </p>
+    </div>
+  </section>
+
+  <!-- Write-ups Section -->
+  <section class="section" style="padding-top: 2rem;">
+    <div class="container">
+      <a href="/" class="back-to-portfolio">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        Back to Portfolio
+      </a>
+      
+      <div class="writeup-filters animate-on-scroll">
+        <button class="writeup-filter active">All</button>
+        <button class="writeup-filter">Web Security</button>
+        <button class="writeup-filter">CTF</button>
+        <button class="writeup-filter">Network</button>
+        <button class="writeup-filter">Malware Analysis</button>
+        <button class="writeup-filter">SOC & DFIR</button>
+      </div>
+      
+      <div class="writeups-grid">
+        <!-- Coming Soon Card -->
+        <div class="coming-soon-card animate-on-scroll">
+          <div class="coming-soon-icon">🚧</div>
+          <h3 class="coming-soon-title">Write-Ups Coming Soon</h3>
+          <p class="coming-soon-text">
+            I'm currently working on documenting my CTF solutions, vulnerability findings, 
+            and security tutorials. Check back soon for fresh content!
+          </p>
+          <a href="/#contact" class="btn btn-primary">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            Get Notified
+          </a>
+        </div>
+        
+        <!-- Sample Write-up Cards (Placeholders) -->
+        <article class="writeup-card animate-on-scroll">
+          <div class="writeup-card-image">🔍</div>
+          <div class="writeup-card-content">
+            <span class="writeup-card-category">
+              <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+              </svg>
+              Web Security
+            </span>
+            <h3 class="writeup-card-title">Reflected XSS to Account Takeover - A Real World Case</h3>
+            <p class="writeup-card-excerpt">
+              Deep dive into a reflected XSS vulnerability I found in a production application, 
+              including exploitation and remediation steps.
+            </p>
+            <div class="writeup-card-meta">
+              <span class="writeup-card-date">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                Jan 2026
+              </span>
+              <span class="writeup-card-read-time">8 min read</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="writeup-card animate-on-scroll" data-delay="100">
+          <div class="writeup-card-image">🏆</div>
+          <div class="writeup-card-content">
+            <span class="writeup-card-category">
+              <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+              </svg>
+              CTF
+            </span>
+            <h3 class="writeup-card-title">THM Writeup: Brooklyn Nine Nine</h3>
+            <p class="writeup-card-excerpt">
+              Walkthrough for TryHackMe's "Brooklyn Nine Nine" room. 
+              Multiple privilege escalation techniques covered.
+            </p>
+            <div class="writeup-card-meta">
+              <span class="writeup-card-date">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                Dec 2025
+              </span>
+              <span class="writeup-card-read-time">12 min read</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="writeup-card animate-on-scroll" data-delay="200">
+          <div class="writeup-card-image">🛡️</div>
+          <div class="writeup-card-content">
+            <span class="writeup-card-category">
+              <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+              </svg>
+              SOC & DFIR
+            </span>
+            <h3 class="writeup-card-title">Detecting Brute Force Attacks with Wazuh</h3>
+            <p class="writeup-card-excerpt">
+              How to configure Wazuh rules to detect and alert on brute force 
+              login attempts in your infrastructure.
+            </p>
+            <div class="writeup-card-meta">
+              <span class="writeup-card-date">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                Nov 2025
+              </span>
+              <span class="writeup-card-read-time">15 min read</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="writeup-card animate-on-scroll" data-delay="300">
+          <div class="writeup-card-image">💉</div>
+          <div class="writeup-card-content">
+            <span class="writeup-card-category">
+              <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+              </svg>
+              Malware Analysis
+            </span>
+            <h3 class="writeup-card-title">Static Analysis of a Python Ransomware</h3>
+            <p class="writeup-card-excerpt">
+              Analyzing a real ransomware sample (sandboxed) to understand 
+              its behavior and encryption mechanisms.
+            </p>
+            <div class="writeup-card-meta">
+              <span class="writeup-card-date">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                Oct 2025
+              </span>
+              <span class="writeup-card-read-time">20 min read</span>
+            </div>
+          </div>
+        </article>
+        
+        <article class="writeup-card animate-on-scroll" data-delay="400">
+          <div class="writeup-card-image">🌐</div>
+          <div class="writeup-card-content">
+            <span class="writeup-card-category">
+              <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+              </svg>
+              Network Security
+            </span>
+            <h3 class="writeup-card-title">Network Enumeration with Nmap - Advanced Techniques</h3>
+            <p class="writeup-card-excerpt">
+              Advanced Nmap scanning techniques for penetration testing, 
+              including timing templates and evasion methods.
+            </p>
+            <div class="writeup-card-meta">
+              <span class="writeup-card-date">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                Sep 2025
+              </span>
+              <span class="writeup-card-read-time">10 min read</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="writeups-cta animate-on-scroll">
+        <div class="writeups-cta-content">
+          <div class="writeups-cta-icon">💡</div>
+          <h2 class="writeups-cta-title">Want to Learn Together?</h2>
+          <p class="writeups-cta-description">
+            I'm open to collaboration, knowledge sharing, and teaching. 
+            If you're interested in cybersecurity or development, let's connect!
+          </p>
+          <div class="hero-actions" style="justify-content: center;">
+            <a href="/#contact" class="btn btn-primary">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+              </svg>
+              Let's Chat
+            </a>
+            <a href="/" class="btn btn-secondary">
+              Back to Portfolio
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: none;">
+        <p class="footer-copyright">© 2026 Miftahunnaufal Hidayat. All rights reserved.</p>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <a href="/" style="color: var(--text-muted); font-size: 0.875rem;">Portfolio</a>
+          <span style="color: var(--border);">|</span>
+          <a href="/#contact" style="color: var(--text-muted); font-size: 0.875rem;">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="static/portfolio.js"></script>
+  <script>
+    // Filter functionality
+    document.querySelectorAll('.writeup-filter').forEach(filter => {
+      filter.addEventListener('click', function() {
+        document.querySelectorAll('.writeup-filter').forEach(f => f.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
